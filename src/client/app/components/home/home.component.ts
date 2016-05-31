@@ -5,6 +5,8 @@ import {Store} from '@ngrx/store';
 import {FormComponent} from '../../frameworks/core.framework/index';
 import {NameListService} from '../../frameworks/app.framework/index';
 
+var firebase = require('nativescript-plugin-firebase');
+
 @FormComponent({
   selector: 'sd-home',
   templateUrl: './app/components/home/home.component.html',
@@ -13,7 +15,13 @@ import {NameListService} from '../../frameworks/app.framework/index';
 export class HomeComponent {
   public newName: string = '';
   constructor(private store: Store<any>, public nameListService: NameListService) { 
-
+    firebase.init({
+      persist: true // Allow disk persistence. Default false.
+    }).then(function (instance:any) {
+      console.log("firebase.init done");
+    }, function (error:any) {
+      console.log("firebase.init error: " + error);
+    });
   }
   
   /*
@@ -22,6 +30,12 @@ export class HomeComponent {
    */
   addName(): boolean {
     this.nameListService.add(this.newName);
+    firebase.push(
+      '/names',
+      { 'first': this.newName }
+    ).then(function (result:any) {
+      console.log("created key: " + result.key);
+    });
     this.newName = '';
     return false;
   }

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "379182258739",
+    "firebase_url": "https://ng2-test-107d1.firebaseio.com",
+    "project_id": "ng2-test-107d1",
+    "storage_bucket": "ng2-test-107d1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:379182258739:android:b5b2d0645952e7bc",
+        "android_client_info": {
+          "package_name": "com.entercastle.ng2Test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "379182258739-k6l9q05jmr7oo7u2mc4sig480dtd198s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8wSQzxmhLRwvfRQSqldZV4gFWQk9X9XI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
