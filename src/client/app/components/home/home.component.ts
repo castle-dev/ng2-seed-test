@@ -3,9 +3,7 @@ import {Store} from '@ngrx/store';
 
 // app
 import {FormComponent} from '../../frameworks/core.framework/index';
-import {NameListService} from '../../frameworks/app.framework/index';
-
-var firebase = require('nativescript-plugin-firebase');
+import {NameListService, DatabaseService} from '../../frameworks/app.framework/index';
 
 @FormComponent({
   selector: 'sd-home',
@@ -14,29 +12,27 @@ var firebase = require('nativescript-plugin-firebase');
 })
 export class HomeComponent {
   public newName: string = '';
-  constructor(private store: Store<any>, public nameListService: NameListService) { 
-    firebase.init({
-      persist: true // Allow disk persistence. Default false.
-    }).then(function (instance:any) {
-      console.log("firebase.init done");
-    }, function (error:any) {
-      console.log("firebase.init error: " + error);
+  constructor(private store: Store<any>, public nameListService: NameListService, public databaseService: DatabaseService) {
+    this.databaseService.sync((result:any) => {
+      console.log('Event type: ' + result.type);
+      console.log('Key: ' + result.key);
+      console.log('Value: ' + JSON.stringify(result.value));
+      let namesMap = result.value;
+      let namesArray: string[] = [];
+      for (var key in namesMap) {
+        namesArray.push(namesMap[key].first);
+      }
+      this.nameListService.setNames(namesArray);
     });
   }
-  
+
   /*
    * @param newname  any text as input.
    * @returns return false to prevent default form submit behavior to refresh the page.
    */
-  addName(): boolean {
-    this.nameListService.add(this.newName);
-    firebase.push(
-      '/names',
-      { 'first': this.newName }
-    ).then(function (result:any) {
-      console.log("created key: " + result.key);
+  addName(): void {
+    this.databaseService.addChild('/names', { first: this.newName }, () => {
+      this.newName = '';
     });
-    this.newName = '';
-    return false;
   }
 }
