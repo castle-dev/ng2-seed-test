@@ -5,9 +5,9 @@ import {FIREBASE} from '../../core.framework/index';
 export class DatabaseService {
   database: any;
   onSync: Function;
-  constructor(@Inject(FIREBASE) Firebase:any) {
+  constructor(@Inject(FIREBASE) firebase:any) {
     console.log('Constructing DatabaseService');
-    this.database = new Firebase('https://ng2-test-107d1.firebaseio.com/');
+    this.database = new firebase('https://ng2-test-107d1.firebaseio.com/');
   }
 
   sync(path: string, onValueReceived: Function) {

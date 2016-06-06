@@ -6,6 +6,7 @@ import {ELEMENT_PROBE_PROVIDERS} from '@angular/platform-browser';
 
 // config
 import {CoreConfigService, FIREBASE} from './app/frameworks/core.framework/index';
+import {DatabaseService} from './app/frameworks/core.framework/services/database.service';
 CoreConfigService.PLATFORM_TARGET = CoreConfigService.PLATFORMS.WEB;
 CoreConfigService.DEBUG.LEVEL_4 = true;
 
@@ -35,7 +36,8 @@ let BOOTSTRAP_PROVIDERS: any[] = [
   provide(ConsoleService, { useValue: console }),
   CORE_PROVIDERS,
   ANALYTICS_PROVIDERS,
-  APP_PROVIDERS
+  APP_PROVIDERS,
+  DatabaseService
 ];
 
 if ('<%= TARGET_DESKTOP %>' === 'true') {

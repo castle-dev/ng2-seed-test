@@ -18,7 +18,7 @@ export class NSDatabaseService {
   }
 
   sync(path: string, onValueReceived: Function) {
-    this.onSync = (result:any) => onValueReceived(result);
+    this.onSync = (result:any) => onValueReceived(result.value);
     this.database.addValueEventListener(this.onSync, '/names');
   }
 

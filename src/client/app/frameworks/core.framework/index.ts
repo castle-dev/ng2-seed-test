@@ -3,20 +3,18 @@ import {HTTP_PROVIDERS} from '@angular/http';
 import {ROUTER_PROVIDERS} from '@angular/router-deprecated';
 import {OpaqueToken} from '@angular/core';
 
+export const FIREBASE: OpaqueToken = new OpaqueToken('firebase');
+
 // app
 import {LogService} from './services/log.service';
 import {HttpService} from './services/http.service';
-import {DatabaseService} from './services/database.service';
 
 export const CORE_PROVIDERS: any[] = [
   HTTP_PROVIDERS,
   ROUTER_PROVIDERS,
   LogService,
   HttpService,
-  DatabaseService
 ];
-
-export const FIREBASE: OpaqueToken = new OpaqueToken('firebase');
 
 // decorators
 export * from './decorators/base.component';

@@ -15,10 +15,7 @@ export class HomeComponent {
   public newName: string = '';
   constructor(private store: Store<any>, public nameListService: NameListService, public databaseService: DatabaseService) {
     this.databaseService.sync('/names', (result:any) => {
-      console.log('Event type: ' + result.type);
-      console.log('Key: ' + result.key);
-      console.log('Value: ' + JSON.stringify(result.value));
-      let namesMap = result.value;
+      let namesMap = result;
       let namesArray: string[] = [];
       for (var key in namesMap) {
         namesArray.push(namesMap[key].first);
