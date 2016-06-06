@@ -33,4 +33,15 @@ export class HomeComponent {
       this.newName = '';
     });
   }
+
+  auth():void {
+    this.databaseService.login('scott@entercastle.com', 'fakepassword1', () => {
+      console.log('Is authed?', this.databaseService.getAuthedUserID());
+    });
+  }
+
+  unauth():void {
+    this.databaseService.logout();
+    console.log('Is authed?', this.databaseService.getAuthedUserID());
+  }
 }

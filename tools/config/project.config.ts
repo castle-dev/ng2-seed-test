@@ -20,7 +20,7 @@ export class ProjectConfig extends SeedAdvancedConfig {
     const seedDependencies = this.NPM_DEPENDENCIES;
 
     this.NPM_DEPENDENCIES = seedDependencies.concat(additional_deps);
-    this.SYSTEM_CONFIG.paths['firebase'] = `${this.APP_BASE}node_modules/firebase/lib/firebase-web`;
-    this.SYSTEM_BUILDER_CONFIG.paths['firebase'] = `node_modules/firebase/lib/firebase-web.js`;
+    this.SYSTEM_CONFIG.paths['firebase'] = `${this.APP_BASE}node_modules/firebase/firebase`;
+    this.SYSTEM_BUILDER_CONFIG.paths['firebase'] = `node_modules/firebase/firebase`;
   }
 }

@@ -14,6 +14,9 @@
   <button type="submit">{{'ADD_BTN_TEXT' | translate}}</button>
 </form>
 
+<button (click)="auth()">{{ 'Log in' }}</button>
+<button (click)="unauth()">{{ 'Log out' }}</button>
+
 <ul>
   <li *ngFor="let name of nameListService.names">{{name}}</li>
 </ul>
