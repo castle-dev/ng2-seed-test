@@ -11,7 +11,7 @@ import {TranslateService} from 'ng2-translate/ng2-translate';
 // app
 import {ConsoleService, LogService} from '../core.framework/index';
 import {AnalyticsService} from '../analytics.framework/index';
-import {AppConfigService, nameListReducer} from '../app.framework/index';
+import {AppConfigService} from '../app.framework/index';
 import {MultilingualService, multilingualReducer} from '../i18n.framework/index';
 import {NSAngulartics2Segment} from './services/ns-angulartics2-segment.service';
 import {NSLogService} from './services/ns-log.service';
@@ -24,7 +24,6 @@ export const NS_APP_PROVIDERS: any[] = [
   provide(LogService, { useClass: NSLogService }),
   provideStore({  
     i18n: multilingualReducer, 
-    names: nameListReducer 
   }),
   Angulartics2,
   provide(Angulartics2Segment, { useClass: NSAngulartics2Segment }),

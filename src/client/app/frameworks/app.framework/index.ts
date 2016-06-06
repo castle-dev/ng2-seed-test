@@ -20,4 +20,3 @@ export const APP_PROVIDERS: any[] = [
 // services
 export * from './services/app-config.service';
 export * from './services/name-list.service';
-export * from './services/database.service';

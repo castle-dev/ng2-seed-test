@@ -3,7 +3,8 @@ import {Store} from '@ngrx/store';
 
 // app
 import {FormComponent} from '../../frameworks/core.framework/index';
-import {NameListService, DatabaseService} from '../../frameworks/app.framework/index';
+import {NameListService} from '../../frameworks/app.framework/index';
+import {DatabaseService} from '../../frameworks/core.framework/index';
 
 @FormComponent({
   selector: 'sd-home',
@@ -13,7 +14,7 @@ import {NameListService, DatabaseService} from '../../frameworks/app.framework/i
 export class HomeComponent {
   public newName: string = '';
   constructor(private store: Store<any>, public nameListService: NameListService, public databaseService: DatabaseService) {
-    this.databaseService.sync((result:any) => {
+    this.databaseService.sync('/names', (result:any) => {
       console.log('Event type: ' + result.type);
       console.log('Key: ' + result.key);
       console.log('Value: ' + JSON.stringify(result.value));

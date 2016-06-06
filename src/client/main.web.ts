@@ -5,7 +5,7 @@ import {APP_BASE_HREF, LocationStrategy, HashLocationStrategy} from '@angular/co
 import {ELEMENT_PROBE_PROVIDERS} from '@angular/platform-browser';
 
 // config
-import {CoreConfigService} from './app/frameworks/core.framework/index';
+import {CoreConfigService, FIREBASE} from './app/frameworks/core.framework/index';
 CoreConfigService.PLATFORM_TARGET = CoreConfigService.PLATFORMS.WEB;
 CoreConfigService.DEBUG.LEVEL_4 = true;
 
@@ -18,6 +18,8 @@ import {AppComponent} from './app/components/app/app.component';
 // custom i18n language support
 MultilingualService.SUPPORTED_LANGUAGES = AppConfigService.SUPPORTED_LANGUAGES;
 
+var firebase = require('firebase');
+
 const ENV_PROVIDERS: Array<any> = [];
 if ('<%= ENV %>' === 'prod' || '<%= TARGET_DESKTOP_BUILD %>' === 'true') {
   enableProdMode();
@@ -27,6 +29,7 @@ if ('<%= ENV %>' === 'prod' || '<%= TARGET_DESKTOP_BUILD %>' === 'true') {
 
 let BOOTSTRAP_PROVIDERS: any[] = [
   ENV_PROVIDERS,
+  provide(FIREBASE, { useValue: firebase }),
   provide(APP_BASE_HREF, { useValue: '<%= APP_BASE %>' }),
   provide(WindowService, { useValue: window }),
   provide(ConsoleService, { useValue: console }),

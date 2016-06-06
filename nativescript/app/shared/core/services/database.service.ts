@@ -1,12 +1,12 @@
-import {Injectable} from '@angular/core';
-
-var firebase = require('nativescript-plugin-firebase');
+import {Injectable, Inject} from '@angular/core';
+import {FIREBASE} from '../../../app/frameworks/core.framework/index'
 
 @Injectable()
-export class DatabaseService {
+export class NSDatabaseService {
   database: any;
   onSync: Function;
-  constructor() {
+  constructor(@Inject(FIREBASE) firebase:any) {
+    console.log('Constructing NSDatabaseService');
     this.database = firebase;
     this.database.init({
       persist: true // Allow disk persistence. Default false.
@@ -17,7 +17,7 @@ export class DatabaseService {
     });
   }
 
-  sync(onValueReceived: Function) {
+  sync(path: string, onValueReceived: Function) {
     this.onSync = (result:any) => onValueReceived(result);
     this.database.addValueEventListener(this.onSync, '/names');
   }
